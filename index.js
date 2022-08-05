@@ -5,6 +5,8 @@ const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3({
   endpoint: process.env.AWS_ENDPOINT || 's3.ap-southeast-1.amazonaws.com',
+  s3ForcePathStyle: true,
+  signatureVersion: 'v4'
 });
 
 const file = fs.readFileSync('test.txt');
