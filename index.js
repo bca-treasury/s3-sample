@@ -10,14 +10,20 @@ const s3 = new AWS.S3({
 const file = fs.readFileSync('test.txt');
 
 const main = async () => {
-  const uploadedImage = await s3.putObject({
+  const uploadedFile = await s3.putObject({
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: 'test/test.txt',
     Body: file,
   }).promise()
 
+  console.log(uploadedFile)
 
-  console.log(uploadedImage)
+  const getFile = await s3.getSignedUrl('getObject', {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: 'test/test.txt',
+  })
+
+  console.log(getFile)
 }
 
 main();
