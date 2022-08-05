@@ -10,14 +10,14 @@ const s3 = new AWS.S3({
 const file = fs.readFileSync('test.txt');
 
 const main = async () => {
-  const uploadedImage = await s3.upload({
+  const uploadedImage = await s3.putObject({
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: 'test/test.txt',
     Body: file,
   }).promise()
 
 
-  console.log(uploadedImage.Location)
+  console.log(uploadedImage)
 }
 
 main();
