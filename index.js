@@ -12,6 +12,15 @@ const s3 = new AWS.S3({
 const file = fs.readFileSync('test.txt');
 
 const main = async () => {
+  if (process.argv[2]) {
+    await s3.deleteObject({
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: 'test/test.txt',
+    }).promise()
+
+    return;
+  }
+
   const uploadedFile = await s3.putObject({
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: 'test/test.txt',
