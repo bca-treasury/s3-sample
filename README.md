@@ -1,3 +1,8 @@
+### How to setup
+
+1. Please make sure your laptop has nodejs v14.0+
+2. Run `npm install` on the root directory
+
 ### How to run
 
 1. Copy `.env.example` to `.env`
